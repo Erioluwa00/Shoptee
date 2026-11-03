@@ -1,7 +1,7 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import ProductCard from '../components/ProductCard'
-import { CloseIcon, SearchIcon } from '../components/Icons'
+import { CloseIcon, FilterIcon, SearchIcon } from '../components/Icons'
 import { categories, products } from '../data/products'
 import '../styles/ProductCard.css'
 import '../styles/Shop.css'
@@ -26,6 +26,26 @@ export default function Shop() {
   const sort = params.get('sort') || 'featured'
   const band = params.get('price') || 'any'
   const query = params.get('q') || ''
+  const [sheetOpen, setSheetOpen] = useState(false)
+  const activeFilters = (category !== 'all') + (band !== 'any')
+
+  useEffect(() => {
+    if (!sheetOpen) return
+    document.body.style.overflow = 'hidden'
+    const onKey = (e) => e.key === 'Escape' && setSheetOpen(false)
+    window.addEventListener('keydown', onKey)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', onKey)
+    }
+  }, [sheetOpen])
+
+  const clearFilters = () => {
+    const next = new URLSearchParams(params)
+    next.delete('category')
+    next.delete('price')
+    setParams(next, { replace: true })
+  }
 
   const update = (key, value, fallback) => {
     const next = new URLSearchParams(params)
@@ -78,6 +98,10 @@ export default function Shop() {
             <span className="result-count">
               {results.length} {results.length === 1 ? 'piece' : 'pieces'}
             </span>
+            <button type="button" className="filters-btn" onClick={() => setSheetOpen(true)}>
+              <FilterIcon /> Filters
+              {activeFilters > 0 && <span className="filters-btn-count">{activeFilters}</span>}
+            </button>
             <select value={sort} onChange={(e) => update('sort', e.target.value, 'featured')} aria-label="Sort by">
               {Object.entries(sorts).map(([id, s]) => (
                 <option key={id} value={id}>
@@ -90,7 +114,19 @@ export default function Shop() {
       </div>
 
       <div className="container shop-layout">
-        <aside className="filters" aria-label="Filters">
+        <div
+          className={`filters-backdrop ${sheetOpen ? 'open' : ''}`}
+          onClick={() => setSheetOpen(false)}
+          aria-hidden="true"
+        />
+        <aside className={`filters ${sheetOpen ? 'open' : ''}`} aria-label="Filters">
+          <div className="filters-head">
+            <h3>Filters</h3>
+            <button type="button" className="icon-btn" aria-label="Close filters" onClick={() => setSheetOpen(false)}>
+              <CloseIcon />
+            </button>
+          </div>
+
           <div className="filter-block">
             <h4>Categories</h4>
             <ul className="filter-list">
@@ -134,6 +170,15 @@ export default function Shop() {
             <Link to="/#newsletter" className="link-arrow">
               Get restock alerts
             </Link>
+          </div>
+
+          <div className="filters-foot">
+            <button type="button" className="btn btn-outline" onClick={clearFilters} disabled={!activeFilters}>
+              Clear
+            </button>
+            <button type="button" className="btn btn-primary" onClick={() => setSheetOpen(false)}>
+              Show {results.length} {results.length === 1 ? 'piece' : 'pieces'}
+            </button>
           </div>
         </aside>
 
