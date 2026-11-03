@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import Logo from '../components/Logo'
 import { ArrowIcon, Bow, Heart } from '../components/Icons'
-import { WHATSAPP_URL } from '../data/products'
 import '../styles/About.css'
 
 const stats = [
@@ -18,10 +17,10 @@ const values = [
 ]
 
 const steps = [
-  { n: '01', title: 'Pick your faves', text: 'Browse the shop and add your pieces to your bag.' },
-  { n: '02', title: 'Confirm on WhatsApp', text: 'We confirm your size, colour and delivery details.' },
-  { n: '03', title: 'Make payment', text: 'Pay by transfer once your order is confirmed.' },
-  { n: '04', title: 'Pack-an-order!', text: 'We pack it with love and send it straight to you.' },
+  { n: '01', title: 'Pick your faves', text: 'Choose your colour and size, then add your pieces to your bag.' },
+  { n: '02', title: 'Checkout', text: 'Enter your delivery address and pick Lagos, nationwide or pickup.' },
+  { n: '03', title: 'Pay securely', text: 'Pay by card, bank transfer or USSD — right on the site.' },
+  { n: '04', title: 'Pack-an-order!', text: 'We pack it with love and email you tracking updates.' },
 ]
 
 export default function About() {
@@ -104,9 +103,9 @@ export default function About() {
             ))}
           </div>
           <div className="how-cta">
-            <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="btn btn-primary">
-              Start an order on WhatsApp
-            </a>
+            <Link to="/shop" className="btn btn-primary">
+              Start shopping <ArrowIcon />
+            </Link>
           </div>
         </div>
       </section>

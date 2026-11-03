@@ -1,6 +1,5 @@
 const img = (name) => `/images/${name}.jpg`
 
-export const WHATSAPP_URL = 'https://wa.me/message/5QYN5JNMMM3TL1'
 export const INSTAGRAM_URL = 'https://instagram.com/shoptee.brand'
 export const BACKUP_INSTAGRAM_URL = 'https://instagram.com/shoptee.brand2'
 

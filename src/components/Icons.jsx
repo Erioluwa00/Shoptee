@@ -75,13 +75,6 @@ export const SparkleIcon = (p) => (
   </svg>
 )
 
-export const ChatIcon = (p) => (
-  <svg {...base} {...p}>
-    <path d="M20 12a8 8 0 0 1-11.8 7L4 20l1-4.1A8 8 0 1 1 20 12Z" />
-    <path d="M9 10.5c.3 1.6 1.9 3.3 3.6 3.8l1.1-1 1.6.8c-.2 1-1.1 1.6-2 1.5-2.6-.3-5.1-2.8-5.4-5.4-.1-.9.5-1.8 1.5-2l.8 1.6-1.2.7Z" />
-  </svg>
-)
-
 export const InstagramIcon = (p) => (
   <svg {...base} {...p}>
     <rect x="3.5" y="3.5" width="17" height="17" rx="5" />

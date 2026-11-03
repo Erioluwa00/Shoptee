@@ -35,14 +35,14 @@ export function ShopProvider({ children }) {
     return () => clearTimeout(t)
   }, [toast])
 
-  const addToCart = (productId, { color, size, qty = 1 } = {}) => {
+  const addToCart = (productId, { color, size, qty = 1 } = {}, { openDrawer = true } = {}) => {
     const key = `${productId}|${color ?? ''}|${size ?? ''}`
     setCart((items) => {
       const existing = items.find((i) => i.key === key)
       if (existing) return items.map((i) => (i.key === key ? { ...i, qty: i.qty + qty } : i))
       return [...items, { key, productId, color, size, qty }]
     })
-    setCartOpen(true)
+    if (openDrawer) setCartOpen(true)
   }
 
   const updateQty = (key, qty) =>

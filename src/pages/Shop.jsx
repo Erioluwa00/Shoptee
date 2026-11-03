@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import ProductCard from '../components/ProductCard'
-import { SearchIcon } from '../components/Icons'
+import { CloseIcon, SearchIcon } from '../components/Icons'
 import { categories, products } from '../data/products'
 import '../styles/ProductCard.css'
 import '../styles/Shop.css'
@@ -57,6 +57,38 @@ export default function Shop() {
         </p>
       </section>
 
+      <div className="container">
+        <div className="toolbar">
+          <label className="search">
+            <SearchIcon />
+            <input
+              type="search"
+              placeholder="Search tops, sets, watches…"
+              value={query}
+              onChange={(e) => update('q', e.target.value, '')}
+              aria-label="Search products"
+            />
+            {query && (
+              <button type="button" className="search-clear" aria-label="Clear search" onClick={() => update('q', '', '')}>
+                <CloseIcon />
+              </button>
+            )}
+          </label>
+          <div className="toolbar-right">
+            <span className="result-count">
+              {results.length} {results.length === 1 ? 'piece' : 'pieces'}
+            </span>
+            <select value={sort} onChange={(e) => update('sort', e.target.value, 'featured')} aria-label="Sort by">
+              {Object.entries(sorts).map(([id, s]) => (
+                <option key={id} value={id}>
+                  {s.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+      </div>
+
       <div className="container shop-layout">
         <aside className="filters" aria-label="Filters">
           <div className="filter-block">
@@ -98,9 +130,9 @@ export default function Shop() {
 
           <div className="filter-promo">
             <p className="script">psst…</p>
-            <p>Can’t find your size or colour? Send us a DM — we restock weekly.</p>
-            <Link to="/contact" className="link-arrow">
-              Ask us
+            <p>Can’t find your size or colour? New pieces and restocks drop every week.</p>
+            <Link to="/#newsletter" className="link-arrow">
+              Get restock alerts
             </Link>
           </div>
         </aside>
@@ -118,31 +150,6 @@ export default function Shop() {
                 {c.name}
               </button>
             ))}
-          </div>
-
-          <div className="toolbar">
-            <label className="search">
-              <SearchIcon />
-              <input
-                type="search"
-                placeholder="Search tops, sets, watches…"
-                value={query}
-                onChange={(e) => update('q', e.target.value, '')}
-                aria-label="Search products"
-              />
-            </label>
-            <div className="toolbar-right">
-              <span className="result-count">
-                {results.length} {results.length === 1 ? 'piece' : 'pieces'}
-              </span>
-              <select value={sort} onChange={(e) => update('sort', e.target.value, 'featured')} aria-label="Sort by">
-                {Object.entries(sorts).map(([id, s]) => (
-                  <option key={id} value={id}>
-                    {s.label}
-                  </option>
-                ))}
-              </select>
-            </div>
           </div>
 
           {results.length > 0 ? (

@@ -8,7 +8,7 @@ const announcements = [
   'Nationwide delivery across Nigeria',
   'Loved by 5,000+ happy customers',
   'New eyelet halters just dropped',
-  'Order easily via WhatsApp',
+  'Shop & pay securely online',
   'Polka Bubble set — save ₦2k',
 ]
 

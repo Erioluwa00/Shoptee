@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import ProductCard from '../components/ProductCard'
-import { ArrowIcon, Bow, ChatIcon, Heart, InstagramIcon, RefreshIcon, ShieldIcon, SparkleIcon, TruckIcon } from '../components/Icons'
-import { categories, formatPrice, getProduct, INSTAGRAM_URL, products, WHATSAPP_URL } from '../data/products'
+import { ArrowIcon, BagIcon, Bow, Heart, InstagramIcon, RefreshIcon, ShieldIcon, SparkleIcon, TruckIcon } from '../components/Icons'
+import { categories, formatPrice, getProduct, INSTAGRAM_URL, products } from '../data/products'
 import '../styles/ProductCard.css'
 import '../styles/Home.css'
 
@@ -14,7 +14,7 @@ const perks = [
   { icon: TruckIcon, title: 'Nationwide delivery', text: 'Fast dispatch to every state in Nigeria' },
   { icon: ShieldIcon, title: 'Quality checked', text: 'Every piece inspected before it ships' },
   { icon: RefreshIcon, title: 'Easy exchanges', text: 'Wrong size? We’ll sort you out' },
-  { icon: ChatIcon, title: 'Order on WhatsApp', text: 'Real humans, fast replies' },
+  { icon: BagIcon, title: 'Checkout in minutes', text: 'Pay by card or transfer — no DMs needed' },
 ]
 
 const reviews = [
@@ -51,9 +51,9 @@ export default function Home() {
               <Link to="/shop" className="btn btn-primary">
                 Shop new in <ArrowIcon />
               </Link>
-              <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="btn btn-outline">
-                Order on WhatsApp
-              </a>
+              <Link to="/shop?category=sets" className="btn btn-outline">
+                Shop the sets
+              </Link>
             </div>
             <div className="hero-proof">
               <div className="proof-avatars">
@@ -263,7 +263,7 @@ export default function Home() {
       </section>
 
       {/* ---------- Newsletter ---------- */}
-      <section className="container">
+      <section className="container" id="newsletter">
         <div className="newsletter">
           <Bow className="newsletter-bow" />
           <SparkleIcon className="newsletter-sparkle" />

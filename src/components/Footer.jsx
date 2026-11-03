@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import Logo from './Logo'
-import { ChatIcon, InstagramIcon } from './Icons'
-import { BACKUP_INSTAGRAM_URL, INSTAGRAM_URL, WHATSAPP_URL } from '../data/products'
+import { InstagramIcon } from './Icons'
+import { BACKUP_INSTAGRAM_URL, INSTAGRAM_URL } from '../data/products'
 import '../styles/Footer.css'
 
 export default function Footer() {
@@ -18,9 +18,6 @@ export default function Footer() {
           <div className="footer-social">
             <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Instagram">
               <InstagramIcon />
-            </a>
-            <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" aria-label="WhatsApp">
-              <ChatIcon />
             </a>
           </div>
         </div>
@@ -44,9 +41,7 @@ export default function Footer() {
 
         <div className="footer-col">
           <h4>Say hi</h4>
-          <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
-            Chat on WhatsApp
-          </a>
+          <Link to="/contact">Send us a message</Link>
           <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">
             @shoptee.brand
           </a>

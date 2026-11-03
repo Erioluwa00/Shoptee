@@ -1,12 +1,13 @@
 import { useState } from 'react'
-import { ChatIcon, ChevronIcon, InstagramIcon, SparkleIcon } from '../components/Icons'
-import { BACKUP_INSTAGRAM_URL, INSTAGRAM_URL, WHATSAPP_URL } from '../data/products'
+import { Link } from 'react-router-dom'
+import { BagIcon, ChevronIcon, InstagramIcon, SparkleIcon } from '../components/Icons'
+import { BACKUP_INSTAGRAM_URL, INSTAGRAM_URL } from '../data/products'
 import '../styles/Contact.css'
 
 const faqs = [
   {
     q: 'Do you have a walk-in store?',
-    a: 'We’re an online store for now, which keeps our prices sweet! Pickups can be arranged by appointment — just send us a message on WhatsApp.',
+    a: 'We’re an online store for now, which keeps our prices sweet! You can choose “Pickup” at checkout and we’ll email you a pickup time.',
   },
   {
     q: 'How long does delivery take?',
@@ -22,7 +23,7 @@ const faqs = [
   },
   {
     q: 'How do I pay?',
-    a: 'Once your order is confirmed on WhatsApp we’ll send our account details. Orders are processed as soon as payment is received.',
+    a: 'Right at checkout — pay by card, bank transfer or USSD. Your order is confirmed instantly and a receipt is sent to your email.',
   },
   {
     q: 'Do you restock sold-out items?',
@@ -31,8 +32,8 @@ const faqs = [
 ]
 
 const policy = [
-  'Kindly confirm your size and colour before making payment.',
-  'Orders are only processed after payment is confirmed.',
+  'Kindly check the size guide and confirm your size and colour before checking out.',
+  'Orders are processed as soon as online payment is confirmed.',
   'Exchanges within 3 days of delivery — items must be unworn with tags on.',
   'We do not offer refunds, but store credit is available.',
   'Colours may vary slightly due to lighting and screen settings.',
@@ -66,20 +67,20 @@ export default function Contact() {
       <section className="page-banner">
         <p className="script">hey bestie</p>
         <h1 className="title">Let’s talk</h1>
-        <p className="lead">Questions about sizing, an order or a custom request? We reply fast — promise.</p>
+        <p className="lead">Questions about sizing, an existing order or a custom request? We reply fast — promise.</p>
       </section>
 
       <div className="container contact-grid">
         <div className="contact-cards">
-          <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="ccard ccard-wa">
+          <Link to="/shop" className="ccard ccard-wa">
             <span className="ccard-icon">
-              <ChatIcon />
+              <BagIcon />
             </span>
             <div>
-              <h4>Chat on WhatsApp</h4>
-              <p>The fastest way to order &amp; ask questions</p>
+              <h4>Ready to order?</h4>
+              <p>No need to message us — shop &amp; pay right on the site</p>
             </div>
-          </a>
+          </Link>
           <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className="ccard">
             <span className="ccard-icon">
               <InstagramIcon />
@@ -126,7 +127,7 @@ export default function Contact() {
                   <input required placeholder="Ada" />
                 </label>
                 <label>
-                  <span>Phone / WhatsApp</span>
+                  <span>Phone number</span>
                   <input type="tel" placeholder="080..." />
                 </label>
               </div>

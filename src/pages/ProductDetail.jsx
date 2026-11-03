@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useShop } from '../context/ShopContext'
 import ProductCard from '../components/ProductCard'
-import { BagIcon, ChatIcon, ChevronIcon, HeartIcon, MinusIcon, PlusIcon, RefreshIcon, TruckIcon } from '../components/Icons'
-import { categories, formatPrice, getProduct, products, WHATSAPP_URL } from '../data/products'
+import { BagIcon, ChevronIcon, HeartIcon, MinusIcon, PlusIcon, RefreshIcon, ShieldIcon, TruckIcon } from '../components/Icons'
+import { categories, formatPrice, getProduct, products } from '../data/products'
 import NotFound from './NotFound'
 import '../styles/ProductCard.css'
 import '../styles/ProductDetail.css'
@@ -32,6 +32,7 @@ export default function ProductDetail() {
 
 function ProductView({ product }) {
   const { addToCart, toggleWishlist, isWished, setToast } = useShop()
+  const navigate = useNavigate()
   const [active, setActive] = useState(0)
   const [color, setColor] = useState(product.colors[0]?.name)
   const [size, setSize] = useState(null)
@@ -44,13 +45,23 @@ function ProductView({ product }) {
   const fillers = products.filter((p) => p.id !== product.id && !related.includes(p))
   const youMayLike = [...related, ...fillers].slice(0, 4)
 
-  const add = () => {
+  const sizeChosen = () => {
     if (product.sizes && !size) {
       setSizeError(true)
       setToast('Please pick a size first ♡')
-      return
+      return false
     }
-    addToCart(product.id, { color, size, qty })
+    return true
+  }
+
+  const add = () => {
+    if (sizeChosen()) addToCart(product.id, { color, size, qty })
+  }
+
+  const buyNow = () => {
+    if (!sizeChosen()) return
+    addToCart(product.id, { color, size, qty }, { openDrawer: false })
+    navigate('/cart')
   }
 
   return (
@@ -160,11 +171,14 @@ function ProductView({ product }) {
               </button>
             </div>
 
-            <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="btn btn-outline btn-block">
-              <ChatIcon /> Order this on WhatsApp
-            </a>
+            <button className="btn btn-outline btn-block" onClick={buyNow}>
+              Buy it now
+            </button>
 
             <div className="pdp-perks">
+              <span>
+                <ShieldIcon /> Secure checkout
+              </span>
               <span>
                 <TruckIcon /> Dispatched in 24–48hrs
               </span>
