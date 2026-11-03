@@ -1,0 +1,65 @@
+.wordmark {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+
+.wordmark-script {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -62%) rotate(-4deg);
+  font-family: var(--font-script);
+  color: rgba(196, 85, 122, 0.22);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.wordmark-main {
+  position: relative;
+  font-family: var(--font-caps);
+  letter-spacing: 0.22em;
+  color: var(--ink);
+  padding-left: 0.22em;
+}
+
+.wordmark-tag {
+  position: relative;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-top: 0.9em;
+}
+
+.wordmark-sm .wordmark-main {
+  font-size: 1rem;
+}
+.wordmark-sm .wordmark-script {
+  font-size: 2rem;
+}
+.wordmark-sm .wordmark-tag {
+  font-size: 0.5rem;
+}
+
+.wordmark-md .wordmark-main {
+  font-size: 1.5rem;
+}
+.wordmark-md .wordmark-script {
+  font-size: 3.2rem;
+}
+.wordmark-md .wordmark-tag {
+  font-size: 0.66rem;
+}
+
+.wordmark-lg .wordmark-main {
+  font-size: clamp(1.6rem, 4.4vw, 2.6rem);
+}
+.wordmark-lg .wordmark-script {
+  font-size: clamp(3.4rem, 9vw, 5.6rem);
+}
+.wordmark-lg .wordmark-tag {
+  font-size: clamp(0.6rem, 1.4vw, 0.85rem);
+}
