@@ -62,7 +62,7 @@ export default function Header() {
             <img src="/images/logo.png" alt="" className="brand-badge" />
             <span className="brand-text">
               <span className="brand-name">SHOPTEE</span>
-              <span className="brand-sub">.brand</span>
+              <span className="brand-sub">brand</span>
             </span>
           </Link>
 
@@ -94,7 +94,13 @@ export default function Header() {
         <div className="mobile-nav-backdrop" onClick={() => setMenuOpen(false)} />
         <div className="mobile-nav-panel">
           <div className="mobile-nav-top">
-            <img src="/images/logo.png" alt="Shoptee Brand" className="brand-badge" />
+            <span className="brand">
+              <img src="/images/logo.png" alt="" className="brand-badge" />
+              <span className="brand-text">
+                <span className="brand-name">SHOPTEE</span>
+                <span className="brand-sub">brand</span>
+              </span>
+            </span>
             <button className="icon-btn" aria-label="Close menu" onClick={() => setMenuOpen(false)}>
               <CloseIcon />
             </button>
